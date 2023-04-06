@@ -6,12 +6,10 @@ const Todo = require('../../model/todo');
 const mongoose = require('mongoose');
 
 
-router.get('/getTodo',(req,res,next)=>{
+router.get('/get',(req,res,next)=>{
     Todo.find().then(result=>{
         res.status(200).json(
-            {
-                result
-            }
+            result
         )
     }).catch(error=>{
         res.status(500).json({
