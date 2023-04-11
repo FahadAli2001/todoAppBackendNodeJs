@@ -63,23 +63,28 @@ router.post('/login',(req,res,next)=>{
                 const token = jwt.sign({
                     username:user[0].username,
                     email:user[0].email
-                }) 
-                'dummy text ',{
+                },
+                'dummy text ',
+                {
                     expiresIn:"24h"
                 }
+                ) ;
+                res.status(200).json({
+                    username:user[0].username,
+                    email:user[0].user,
+                    tok:token
+                })
+                .catch(error =>{
+                    console.log(error);
+                    res.status(500).json({
+                        error : error
+                    })
+                })
+               
             }
         });
 
-        res.status(200).json({
-            username:user[0].username,
-            email:user[0].user,
-            token:token
-        })
-        .catch(error =>{
-            res.status(500).json({
-                error : error
-            })
-        })
+        
     })
 })
 
